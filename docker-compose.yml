@@ -1,0 +1,9 @@
+version: "3.9"
+services:
+  db:
+    image: postgres:13.2-alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=20ver6web
+    ports:
+      - 5438:5432
