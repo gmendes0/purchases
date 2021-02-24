@@ -7,6 +7,8 @@ defmodule PurchasesWeb.Router do
 
   scope "/api", PurchasesWeb do
     pipe_through :api
+
+    post "/users", UserController, :store
   end
 
   # Enables LiveDashboard only for development
