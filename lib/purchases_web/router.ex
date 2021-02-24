@@ -9,6 +9,8 @@ defmodule PurchasesWeb.Router do
     pipe_through :api
 
     post "/users", UserController, :store
+
+    resources "/purchases", PurchasesController, except: [:new, :edit]
   end
 
   # Enables LiveDashboard only for development
