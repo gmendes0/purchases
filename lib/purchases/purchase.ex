@@ -1,4 +1,4 @@
-defmodule Purchases.Purchases do
+defmodule Purchases.Purchase do
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -17,5 +17,6 @@ defmodule Purchases.Purchases do
     %__MODULE__{}
     |> cast(params, @required_fields)
     |> validate_required(@required_fields)
+    |> unique_constraint([:nfe])
   end
 end
