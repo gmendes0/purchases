@@ -7,4 +7,11 @@ defmodule PurchasesWeb.FallbackController do
     |> put_view(PurchasesWeb.ErrorView)
     |> render(:"400", changeset: changeset)
   end
+
+  def call(conn, {:error, something}) do
+    conn
+    |> put_status(:bad_request)
+    |> put_view(PurchasesWeb.ErrorView)
+    |> render(:"400", result: something)
+  end
 end

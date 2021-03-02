@@ -23,4 +23,6 @@ defmodule PurchasesWeb.ErrorView do
       end)
     end)
   end
+
+  def render("400.json", %{result: result}), do: %{errors: %{detail: result}}
 end

@@ -19,8 +19,12 @@ defmodule PurchasesWeb.PurchasesController do
     end
   end
 
-  def show(conn, _params) do
-
+  def show(conn, %{"id" => id} = _params) do
+    with {:ok, struct} <- Purchases.get_purchase(id) do
+      conn
+      |> put_status(:ok)
+      |> render(:"200", purchase: struct)
+    end
   end
 
   def create(conn, params) do
@@ -31,11 +35,19 @@ defmodule PurchasesWeb.PurchasesController do
     end
   end
 
-  def update(conn, _params) do
-
+  def update(conn, params) do
+    with {:ok, struct} <- Purchases.update_purchase(params) do
+      conn
+      |> put_status(:created)
+      |> render(:"201", purchase: struct)
+    end
   end
 
-  def delete(conn, _params) do
-
+  def delete(conn, %{"id" => id} = _params) do
+    with {:ok, _struct} <- Purchases.delete_purchase(id) do
+      conn
+      |> put_status(204)
+      |> text("")
+    end
   end
 end

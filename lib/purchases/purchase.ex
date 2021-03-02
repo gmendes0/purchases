@@ -13,8 +13,8 @@ defmodule Purchases.Purchase do
     timestamps()
   end
 
-  def changeset(params) do
-    %__MODULE__{}
+  def changeset(struct \\ %__MODULE__{}, params) do
+    struct
     |> cast(params, @required_fields)
     |> validate_required(@required_fields)
     |> unique_constraint([:nfe])

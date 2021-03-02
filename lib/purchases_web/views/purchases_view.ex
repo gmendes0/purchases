@@ -8,6 +8,12 @@ defmodule PurchasesWeb.PurchasesView do
     end)
   end
 
+  def render("200.json", %{purchase: purchase}) do
+    purchase
+    |> Map.from_struct()
+    |> Map.drop([:__meta__])
+  end
+
   def render("201.json", %{purchase: purchase}) do
     purchase
     |> Map.from_struct()
