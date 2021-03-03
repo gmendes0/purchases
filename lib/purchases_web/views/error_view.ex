@@ -24,5 +24,19 @@ defmodule PurchasesWeb.ErrorView do
     end)
   end
 
+  def render("400.json", %{changesets: changesets}) do
+    Enum.map(changesets, fn {:error, changeset} ->
+      traverse_errors(changeset)
+    end)
+  end
+
   def render("400.json", %{result: result}), do: %{errors: %{detail: result}}
+
+  defp traverse_errors(changeset) do
+    traverse_errors(changeset, fn {msg, opts} ->
+      Enum.reduce(opts, msg, fn {key, value}, acc ->
+        String.replace(acc, "%{#{key}}", to_string(value))
+      end)
+    end)
+  end
 end

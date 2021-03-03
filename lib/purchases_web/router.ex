@@ -11,6 +11,8 @@ defmodule PurchasesWeb.Router do
     post "/users", UserController, :store
 
     resources "/purchases", PurchasesController, except: [:new, :edit]
+    resources "purchases/:purchase_id/items", ItemsController, except: [:new, :edit, :index, :delete]
+    delete "purchases/:purchase_id/items", ItemsController, :delete
   end
 
   # Enables LiveDashboard only for development

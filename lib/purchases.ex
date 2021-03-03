@@ -14,6 +14,11 @@ defmodule Purchases do
   alias Purchases.Purchases.Update, as: PurchasesUpdate
   alias Purchases.Purchases.Delete, as: PurchasesDelete
 
+  alias Purchases.Items.Create, as: ItemsCreate
+  alias Purchases.Items.Show, as: ItemsShow
+  alias Purchases.Items.Update, as: ItemsUpdate
+  alias Purchases.Items.Delete, as: ItemsDelete
+
   defdelegate create_user(params), to: UsersCreate, as: :call
 
   defdelegate create_purchase(params), to: PurchasesCreate, as: :call
@@ -21,4 +26,9 @@ defmodule Purchases do
   defdelegate get_purchases, to: PurchasesIndex, as: :call
   defdelegate update_purchase(params), to: PurchasesUpdate, as: :call
   defdelegate delete_purchase(id), to: PurchasesDelete, as: :call
+
+  defdelegate create_items(params), to: ItemsCreate, as: :call
+  defdelegate get_item(id), to: ItemsShow, as: :call
+  defdelegate update_item(params), to: ItemsUpdate, as: :call
+  defdelegate delete_items(params), to: ItemsDelete, as: :call
 end
